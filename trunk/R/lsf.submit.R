@@ -1,7 +1,8 @@
 # $Id$
 
 "lsf.submit" <-
-  function(func, ..., savelist=c(), packages=NULL, ncpus=1, debug=FALSE)
+  function(func, ..., savelist=c(), packages=NULL, ncpus=1, debug=FALSE
+  )
   # savelist is a character vector of *names* of objects to be
   # copied to the remote R session
   {

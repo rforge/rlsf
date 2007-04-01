@@ -9,6 +9,7 @@
     stop("Rlsf has probably been detached. Please quit R.")
   if (.Call("lsf_initialize", PACKAGE = "Rlsf"))
     stop("LSF library cannot be initialized.")
+
   
 #  if (!library(Rmpi,logical.return = TRUE))
 #    {

@@ -46,7 +46,11 @@ lsf.submit2(func, savelist = c(), packages = NULL, ncpus = 1,
   \code{lsf.submit} is not the result of \code{func}. In order to
   retrieve the result, the \code{lsf.get.result} function must be
   used. If synchronous execution is desired, use the \code{lsf.run.job}
-  function. 
+  function.
+
+  By default, R is invoked as "R".  If the environment variable "RLSF_R" is
+  set, its value is used to invoke R.
+
 }
 \value{
   \item{jobid}{The job identifier returned from LSF.}
