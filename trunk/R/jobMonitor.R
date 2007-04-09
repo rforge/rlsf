@@ -1,6 +1,8 @@
 jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
 {
 
+   if(!is.null(names(x))  & all(names(x) %in% c("jobid", "fname", "debug"))) x <- list(x)
+   
    library(chron)
    chronNow <- function(times = 1) chron(
          rep(format(Sys.time(), "%m/%d/%Y"), times), 
@@ -26,7 +28,6 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
    isFini <- NULL
    
    # set time in chron
-   library(chron)
    current <- chronNow(length(x))   
    
    elapsedTime <- vector(mode = "numeric", length = length(x)) * 0
