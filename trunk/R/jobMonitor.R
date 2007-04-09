@@ -123,6 +123,8 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
       if(verbose) cat("\n\n")      
    }
 
+   if(length(x) == 1) out <- out[[1]]
+
    # cleanup and lsf files specific to this run (exited)
    out
 
