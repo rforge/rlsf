@@ -1,9 +1,6 @@
-% $Id$
 
 \name{lsf.submit}
 \alias{lsf.submit}
-\alias{lsf.submit2}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Submit an \R function to run through LSF}
 \description{
   Submit an \R function to run in batch through the LSF distributed
@@ -12,8 +9,6 @@
 \usage{
 lsf.submit(func, ..., savelist = c(), packages = NULL, ncpus = 1,
            debug = FALSE)
-lsf.submit2(func, savelist = c(), packages = NULL, ncpus = 1,
-           debug = FALSE, ...)
 }
 \arguments{
   \item{func}{This argument provides the name of the function that will
