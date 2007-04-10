@@ -43,7 +43,7 @@ lsf.submit(func, ..., savelist = c(), packages = NULL, ncpus = 1,
   used. If synchronous execution is desired, use the \code{lsf.run.job}
   function.
 
-  By default, R is invoked as "R".  If the environment variable "RLSF_R" is
+  By default, R is invoked as "R".  If the environment variable "RLSF$\_$R" is
   set, its value is used to invoke R.
 
 }
