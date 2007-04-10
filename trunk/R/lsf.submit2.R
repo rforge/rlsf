@@ -22,7 +22,7 @@ lsf.ctrl <- function (
 	askedHosts = NULL, # -m
 	resReq = NULL, # -R
 	#rLimits = c(0),
-	rlimit_cpu = NULL,
+	rlimit_cpu = NULL, # in milliseconds, according to Rlsf.h, 
 	rlimit_fsize = NULL,
 	rlimit_data = NULL,
 	rlimit_stack = NULL, # -S
@@ -31,10 +31,10 @@ lsf.ctrl <- function (
 	rlimit_nofile = NULL,
 	rlimit_open_max = NULL,
 	rlimit_swap = NULL, # -v, in KB
-	rlimit_run = NULL,
+	rlimit_run = NULL, # -W, presumably in seconds
 	rlimit_process = NULL, #-p
 	hostSpec = NULL, # -c
-	numProcessors = 1,
+	numProcessors = 1, 
 	dependCond = NULL, # -w
 	beginTime = NULL, # -b, seconds since 00:00:00 GMT, Jan. 1, 1970
 	termTime = NULL,  # -t, seconds since 00:00:00 GMT, Jan. 1, 1970
