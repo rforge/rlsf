@@ -5,7 +5,7 @@
 Create a working directory for Rlsf
 }
 \usage{
-odfTmpDir()
+lsfTmpDir()
 }
 \details{
 This function determines the temp directory and creates a subdirectory. If a subdirectory cannot be created, an error is thrown.
