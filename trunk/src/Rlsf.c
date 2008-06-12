@@ -32,7 +32,6 @@ SEXP
 lsf_job_submit2(SEXP ctrl) {
 	char *name;
 	char *val;
-	char *vals[100];
 	int jobId, debug, i, j;
 	SEXP elmt = R_NilValue;
 	SEXP names = getAttrib(ctrl, R_NamesSymbol);
