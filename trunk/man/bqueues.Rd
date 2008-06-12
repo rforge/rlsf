@@ -15,6 +15,5 @@ a data frame where each row is a queue. There are columns for the number of jobs
 }
 \author{Max Kuhn}
 
-}
 \keyword{ utilities}
 
