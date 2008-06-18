@@ -1,5 +1,4 @@
-bqueues <- function()
-{
+bqueues <- function() {
    tmpPath <- tempdir()
    rawOut <- system("bqueues", intern = TRUE)
    textOut <- strsplit(rawOut, " ")
@@ -20,8 +19,7 @@ bqueues <- function()
    tmp <-   read.csv(paste(tmpPath, "/bqueues.csv", sep = ""))
    try(file.remove(paste(tmpPath, "/bqueues.csv", sep = "")), silent = TRUE)
    
-   logitFunc <- function(x)
-   {
+   logitFunc <- function(x) {
       x <- ifelse(x == 0, 0.001, x)
       x <- ifelse(x == 1, 0.999, x)
       log(x/(1-x))

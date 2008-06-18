@@ -1,7 +1,7 @@
 Package: Rlsf
 Title: Interface to the LSF Queuing System
-Date: 2007-04-09
-Version: 1.1.0
+Date: 2008-06-13
+Version: 1.1.1
 Author: Chris Smith <csmith@platform.com>,
         Gregory Warnes <warnes@bst.rochester.edu>,
         Max Kuhn <max.kuhn@pfizer.com> and

@@ -150,7 +150,7 @@ else
     else
         if test -f ${LSF_LIBDIR}/libbat.a; then
             AC_MSG_RESULT(["Found libbat.a in ${LSF_LIBDIR}"])
-            LSF_LIBS="${LSF_LIBS} ${LSF_LIBDIR}/libbat.a"
+            LSF_LIBS="${LSF_LIBDIR}/libbat.a"
         else
             AC_MSG_RESULT(["Cannot find libbat.a"])
             AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly."])
@@ -161,7 +161,7 @@ else
     if test "${with_lsf}" = dynamic; then
         if test -f ${LSF_LIBDIR}/liblsf.so; then
             AC_MSG_RESULT(["Found liblsf.so in ${LSF_LIBDIR}"])
-            LSF_LIBS="-L${LSF_LIBDIR} -llsf"
+            LSF_LIBS="${LSF_LIBS} -L${LSF_LIBDIR} -llsf"
         else
             AC_MSG_RESULT(["Cannot find liblsf.so"])
             AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly."])
@@ -183,9 +183,11 @@ AC_SEARCH_LIBS( setsockopt, [socket],,
     [AC_SEARCH_LIBS(setsockopt,[socket],,,[-lnsl])]
 
 )
-AC_SEARCH_LIBS(setsockopt, [nsl])
+AC_SEARCH_LIBS(ypprot_err, [nsl])
 
 LSF_LIBS="$LSF_LIBS $LIBS"
+AC_MSG_NOTICE(["LSF_LIBS looks like:  ${LSF_LIBS}"])
+AC_MSG_NOTICE(["LIBS looks like:  ${LIBS}"])
 
 AC_SUBST([LSF_INCLUDE])
 AC_SUBST([LSF_LIBS])
