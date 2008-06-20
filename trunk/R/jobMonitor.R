@@ -1,4 +1,4 @@
-jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
+JobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
 {
 
    if(!is.null(names(x))  & all(names(x) %in% c("jobid", "fname", "debug"))) x <- list(x)
@@ -37,9 +37,11 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
    
    while(TRUE)
    {
-      
       lastStatus <- jobStat
-      jobStat <- unlist(lapply(x, lsf.job.status))
+      checkThese <- which(!(lastStatus %in% c("DONE", "processed")))      
+      tmpStat <- unlist(lapply(x[checkThese], lsf.job.status))
+      
+      jobStat[checkThese] <- tmpStat
       
       lastTime <- current
       current <- chronNow(length(x))
@@ -66,9 +68,16 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
 
          for(j in seq(along = jobStat))
          {
-        
+
             if(jobStat[j] == "DONE")
             {
+               cat(
+                   paste(
+                         "    getting results for job",
+                         x[[j]]$jobid,
+                         "in file",
+                         x[[j]]$fname,
+                         "\n"))
                tmp <- lsf.get.result(x[[j]])
                
                if(is.null(tmp) & verbose)
@@ -129,4 +138,24 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
    out
 
 }
+
+# testJob <- function()
+#   {
+# 
+#     timeout <- runif(1) * 50
+#     Sys.sleep(timeout)   
+#     out <- Sys.info()[ "nodename"]
+#     out
+#   }
+#
+# numJobs <- 5
+# # create a container for all of the job information to make
+# # processing easy
+# jobData <- vector(mode = "list", length = numJobs)
+# 
+# # submit all the jobs
+# for(i in 1:numJobs) jobData[[i]] <- lsf.submit(testJob)
+# 
+# # monitor and get the results
+# jobResults <- test(jobData, pause = 5, timeLimit = FALSE)
 
