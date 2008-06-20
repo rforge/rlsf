@@ -178,11 +178,13 @@ else
 
 fi
 
-AC_MSG_NOTICE(["Check for libsocket and libnsl ..."])
+AC_MSG_NOTICE(["Check for libsocket ..."])
 AC_SEARCH_LIBS( setsockopt, [socket],,
     [AC_SEARCH_LIBS(setsockopt,[socket],,,[-lnsl])]
 
 )
+dnl probably best to add libnsl  last
+AC_MSG_NOTICE(["Check for libnsl ..."])
 AC_SEARCH_LIBS(ypprot_err, [nsl])
 
 LSF_LIBS="$LSF_LIBS $LIBS"

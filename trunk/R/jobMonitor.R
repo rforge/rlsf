@@ -1,4 +1,4 @@
-JobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
+jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
 {
 
    if(!is.null(names(x))  & all(names(x) %in% c("jobid", "fname", "debug"))) x <- list(x)
