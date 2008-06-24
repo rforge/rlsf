@@ -1,7 +1,9 @@
 #!/bin/sh 
 
 [ "$RLSF_R" ] || RLSF_R=R
-
+if test  "${RLSF_R_OPTS[@]+XXX}" = XXX ; then
+	RLSF_R_OPTS=( --no-save --no-restore ) 
+fi
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <data file> [R path]"
     exit 1
@@ -31,7 +33,7 @@ if [ $numhosts -gt 1 ]; then
     lamboot -v $bhostfile
 fi
 
-"$RLSF_R" --vanilla <<EOF
+"$RLSF_R" ${RLSF_R_OPTS[@]:+"${RLSF_R_OPTS[@]}"} <<EOF
 
 lsf.ret <- try({
   newenv <- environment()
