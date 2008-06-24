@@ -1,6 +1,10 @@
 jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
 {
 
+   on.exit(lapply(x, lsf.kill.job))
+   on.exit(lapply(x, function(u) try(file.remove(u$fname), silent = TRUE)), add = TRUE)
+
+   
    if(!is.null(names(x))  & all(names(x) %in% c("jobid", "fname", "debug"))) x <- list(x)
    
    library(chron)
@@ -15,9 +19,7 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
          
       paste(tmp, collapse = ", ")
    }
-
-   # check for x not being a list of jobs
-   
+  
    out <- vector(mode = "list", length = length(x))
    
    # we put a "position" value into the list so that
@@ -134,7 +136,6 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
 
    if(length(x) == 1) out <- out[[1]]
 
-   # cleanup and lsf files specific to this run (exited)
    out
 
 }
@@ -142,7 +143,7 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
 # testJob <- function()
 #   {
 # 
-#     timeout <- runif(1) * 50
+#     timeout <- runif(1) * 100
 #     Sys.sleep(timeout)   
 #     out <- Sys.info()[ "nodename"]
 #     out
@@ -157,5 +158,4 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
 # for(i in 1:numJobs) jobData[[i]] <- lsf.submit(testJob)
 # 
 # # monitor and get the results
-# jobResults <- test(jobData, pause = 5, timeLimit = FALSE)
-
+# jobResults <- test(jobData, pause = 30, timeLimit = FALSE)
