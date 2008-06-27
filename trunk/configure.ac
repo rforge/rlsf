@@ -25,19 +25,19 @@ AC_MSG_NOTICE([CPPFLAGS after:  ${CPPFLAGS}])
 AC_ARG_ENABLE(
     [embed-lsfpaths],
     [AC_HELP_STRING(
-        [--disable-embed-lsfpaths],
-        [do not embed lsf library paths in 'Rlsf' @<:@enable@:>@]
+        [--embed-lsfpaths],
+        [ embed lsf library paths in 'Rlsf.so' @<:@no@:>@]
         )
     ],
-    [arg_embed=''],
-    [arg_embed=1]
+    [arg_embed='1'],
+    [arg_embed='']
 )
 
 AC_ARG_WITH(
     [lsf],
     [AC_HELP_STRING(
         [--with-lsf],
-        [choose @<:@dynamic@:>@ to link against liblsf.so, or "'static'" to link liblsf.a ]
+        [choose @<:@"dynamic"@:>@ to link against liblsf.so, or "static" to link liblsf.a ]
     )],
     [
         AC_MSG_NOTICE([--with-lsf was used])
@@ -53,7 +53,7 @@ AC_ARG_WITH(
     [bat],
     [AC_HELP_STRING(
         [--with-bat],
-        [choose @<:@dynamic@:>@ to link against libbat.so, or "'static'" to link libbat.a ]
+        [choose @<:@"dynamic"@:>@ to link against libbat.so, or "static" to link libbat.a ]
     )],
     [
         AC_MSG_NOTICE([--with-bat was used])

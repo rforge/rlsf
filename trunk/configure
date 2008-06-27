@@ -1285,17 +1285,16 @@ Optional Features:
   --disable-option-checking  ignore unrecognized --enable/--with options
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
-  --disable-embed-lsfpaths
-                          do not embed lsf library paths in 'Rlsf' [enable]
+  --embed-lsfpaths        embed lsf library paths in 'Rlsf.so' [no]
 
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-lsf              choose [dynamic] to link against liblsf.so, or
-                          "'static'" to link liblsf.a
-  --with-bat              choose [dynamic] to link against libbat.so, or
-                          "'static'" to link libbat.a
+  --with-lsf              choose ["dynamic"] to link against liblsf.so, or
+                          "static" to link liblsf.a
+  --with-bat              choose ["dynamic"] to link against libbat.so, or
+                          "static" to link libbat.a
 
 Some influential environment variables:
   CC          C compiler command
@@ -1783,9 +1782,9 @@ $as_echo "$as_me: CPPFLAGS after:  ${CPPFLAGS}" >&6;}
 ### optional features ###
 # Check whether --enable-embed-lsfpaths was given.
 if test "${enable_embed_lsfpaths+set}" = set; then
-  enableval=$enable_embed_lsfpaths; arg_embed=''
+  enableval=$enable_embed_lsfpaths; arg_embed='1'
 else
-  arg_embed=1
+  arg_embed=''
 
 fi
 

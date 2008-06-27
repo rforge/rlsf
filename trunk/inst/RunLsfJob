@@ -1,7 +1,7 @@
 #!/bin/sh 
 
 [ "$RLSF_R" ] || RLSF_R=R
-if test  "${RLSF_R_OPTS[@]+XXX}" = XXX ; then
+if test  "${RLSF_R_OPTS[*]+XXX}" != XXX ; then
 	RLSF_R_OPTS=( --no-save --no-restore ) 
 fi
 if [ $# -lt 1 ]; then
