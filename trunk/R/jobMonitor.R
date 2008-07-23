@@ -1,6 +1,6 @@
 jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TRUE)
 {
-
+  
    on.exit(lapply(x, lsf.kill.job))
    on.exit(lapply(x, function(u) try(file.remove(u$fname), silent = TRUE)), add = TRUE)
 
@@ -40,8 +40,23 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
    while(TRUE)
    {
       lastStatus <- jobStat
-      checkThese <- which(!(lastStatus %in% c("DONE", "processed")))      
-      tmpStat <- unlist(lapply(x[checkThese], lsf.job.status))
+      checkThese <- which(!(lastStatus %in% c("DONE", "processed")))
+
+      # Write a wrapper around lsf.job.status to catch issues when it
+      # can't get the job status
+      getStatus <- function(u)
+        {
+          tmp <- lsf.job.status(u)
+          if(is.null(tmp))
+            {
+              cat("  **unknown status for job",
+                  u$jobid,
+                  "\n")
+              tmp <- "unknown"
+            }
+          tmp
+        }
+      tmpStat <- unlist(lapply(x[checkThese], getStatus))
       
       jobStat[checkThese] <- tmpStat
       
@@ -64,7 +79,7 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
             
       if(any(jobStat %in% c("DONE", "EXIT")))
       {
-         # we won't try to do anything with existed jobs
+         # we won't try to do anything with exited jobs
          isDone <- jobStat == "DONE"
          isFini <- unique(c(isFini, which(isDone)))
 
@@ -87,11 +102,10 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
                   cat("!!! returned a null value\n")
                   print(x[[j]])
                }
-               if((class(tmp) == "try-error") & verbose) cat("!!! returned an error", tmp, "\n")
+               if((class(tmp) == "try-error") & verbose) cat(paste("  **Job", x[[j]]$jobid,"exited\n"))
                out[[ x[[j]]$position ]] <- tmp
          
-            }
-
+            } 
          } 
          jobStat[isFini] <- "processed"
       }
@@ -136,6 +150,8 @@ jobMonitor <- function(x, pause = 1, timeLimit = TRUE, buffer = 20, verbose = TR
 
    if(length(x) == 1) out <- out[[1]]
 
+   on.exit()
+   
    out
 
 }
