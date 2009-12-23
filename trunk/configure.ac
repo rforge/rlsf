@@ -83,9 +83,9 @@ fi
 if test -f ${LSF_ENVDIR}/lsf.conf; then
     . ${LSF_ENVDIR}/lsf.conf
 else
-    AC_MSG_RESULT(["Cannot find the lsf.conf file in $LSF_ENVDIR"])
-    AC_MSG_ERROR(["Please set the LSF_ENVDIR variable to the LSF 'conf'
-    directory"])
+    AC_MSG_WARN(["Cannot find the lsf.conf file in $LSF_ENVDIR.
+    Environment may not be properly configured for LSF, or it may be
+    necessary to manually set LSF_INCLUDEDIR in the environment"])
 fi
 
 LSF_INCLUDE=""
@@ -145,7 +145,8 @@ else
             LSF_LIBS="-L${LSF_LIBDIR} -lbat"
         else
             AC_MSG_RESULT(["Cannot find libbat.so"])
-            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly."])
+            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly, or set
+				LSF_LIBDIR in the environment."])
         fi    
     else
         if test -f ${LSF_LIBDIR}/libbat.a; then
@@ -153,7 +154,8 @@ else
             LSF_LIBS="${LSF_LIBDIR}/libbat.a"
         else
             AC_MSG_RESULT(["Cannot find libbat.a"])
-            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly."])
+            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly, or set
+				LSF_LIBDIR in the environment."])
         fi    
     fi
 
@@ -164,7 +166,8 @@ else
             LSF_LIBS="${LSF_LIBS} -L${LSF_LIBDIR} -llsf"
         else
             AC_MSG_RESULT(["Cannot find liblsf.so"])
-            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly."])
+            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly, or set
+				LSF_LIBDIR in the environment."])
         fi    
     else
         if test -f ${LSF_LIBDIR}/liblsf.a; then
@@ -172,7 +175,8 @@ else
             LSF_LIBS="${LSF_LIBS} ${LSF_LIBDIR}/liblsf.a"
         else
             AC_MSG_RESULT(["Cannot find liblsf.a"])
-            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly."])
+            AC_MSG_ERROR(["Please check if LSF_ENVDIR is set properly, or set
+				LSF_LIBDIR in the environment."])
         fi    
     fi
 
