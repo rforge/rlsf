@@ -1,4 +1,4 @@
-% $Id: lsf.numcpu.Rd 4 2006-12-15 15:23:10Z kuhn $
+% $Id$
 
 \name{lsf.numcpu}
 \alias{lsf.numcpu}

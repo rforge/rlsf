@@ -1,4 +1,4 @@
-# $Id: lsf.resume.job.R 4 2006-12-15 15:23:10Z kuhn $
+# $Id$
 
 "lsf.resume.job" <-
   function(job)

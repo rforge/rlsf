@@ -1,4 +1,4 @@
-% $Id: scat.Rd 4 2006-12-15 15:23:10Z kuhn $
+% $Id$
 
 \name{scat}
 \alias{scat}

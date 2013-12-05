@@ -1,4 +1,4 @@
-# $Id: lsf.get.result.R 4 2006-12-15 15:23:10Z kuhn $
+# $Id$
 
 "lsf.get.result" <-
   function(job)

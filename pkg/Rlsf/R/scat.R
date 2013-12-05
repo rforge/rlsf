@@ -1,4 +1,4 @@
-# $Id: scat.R 4 2006-12-15 15:23:10Z kuhn $
+# $Id$
 
 # cat to stdout and immediately flush
 scat <- function(...)

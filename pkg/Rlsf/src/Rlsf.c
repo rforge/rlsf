@@ -1,4 +1,4 @@
-/* $Id: Rlsf.c 21 2008-06-12 17:38:24Z ncoult $ */
+/* $Id$ */
 
 #include <stdlib.h>
 #include <netdb.h>

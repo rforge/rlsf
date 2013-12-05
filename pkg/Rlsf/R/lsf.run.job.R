@@ -1,4 +1,4 @@
-# $Id: lsf.run.job.R 4 2006-12-15 15:23:10Z kuhn $
+# $Id$
 
 "lsf.run.job" <-
   function(func, ..., savelist=c(), packages=NULL, ncpus=1, debug=FALSE,

@@ -1,4 +1,4 @@
-# $Id: lsf.submit.R 6 2007-04-01 22:27:23Z ncoult $
+# $Id$
 
 "lsf.submit" <-
   function(func, ..., savelist=c(), packages=NULL, ncpus=1, debug=FALSE

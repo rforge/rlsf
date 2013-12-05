@@ -1,7 +1,7 @@
 Package: Rlsf
 Title: Interface to the LSF Queuing System
-Date: 2008-07-23
-Version: 1.1.4
+Date: 2013-11-12
+Version: 1.1.5
 Author: Chris Smith <csmith@platform.com>,
         Gregory Warnes <warnes@bst.rochester.edu>,
         Max Kuhn <max.kuhn@pfizer.com> and
@@ -12,4 +12,3 @@ Depends: snow, gdata, chron
 SystemRequirements: Platform LSF development libraries
 Maintainer: Max Kuhn <max.kuhn@pfizer.com>
 License: LGPL (see <http://www.opensource.org/licenses/lgpl-license.php>).
-
